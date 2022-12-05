@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AddressForm from './components/AddressForm';
+import Page from './components/Page';
+import AddressFormState from './models/AddressFormState';
+import queryString from 'query-string';
+import axios from 'axios';
 
 function App() {
+  const getWeatherForecast = (item: string) => {
+    console.log(item);
+  };
+
+  const submitAddressParams = (inputs: AddressFormState) => {
+    const url = 'https://geocoding.geo.census.gov/geocoder/locations/address';
+    const qs = queryString.stringifyUrl({
+      url: url,
+      query: inputs,
+    });
+
+    await axios.get(qs);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Page>
+      {/* <Header /> */}
+      <AddressForm onGetWeatherForecast={getWeatherForecast} />
+      {/* <WeatherForecast /> */}
+    </Page>
   );
 }
 
