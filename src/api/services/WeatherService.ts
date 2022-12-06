@@ -1,26 +1,31 @@
 import axios from 'axios';
-import { Coordinates } from '../../models/GeocodeResponse';
+import { Forecast } from '../../models/WeatherAPIForecast';
+import { Points } from '../../models/WeatherAPIPoints';
 
 const apiClient = axios.create({
-  baseURL: 'https://geocoding.geo.census.gov/geocoder/locations',
+  baseURL: 'https://cors-anywhere.herokuapp.com/api.weather.gov/',
   headers: {
     'Content-type': 'application/json',
   },
 });
 
-const findByCoordinates = async (
-  street: string,
-  city: string,
-  state: string
-) => {
-  const response = await apiClient.get<Coordinates>(
-    `/address?street=${street}&city=${city}&state=${state}&format=json`
+const findWeatherForecast = async (url: string) => {
+  const response = await apiClient.get<Forecast>(url);
+  return response.data.properties.periods;
+};
+
+const findForecastURL = async (coords: { x: number; y: number }) => {
+  const response = await apiClient.get<Points>(
+    `/points/${coords.y},${coords.x}`
   );
-  return response.data.result.addressMatches[0].coordinates;
+  console.log(response);
+
+  return response.data.properties.forecast;
 };
 
-const GeocodingService = {
-  findByCoordinates,
+const WeatherService = {
+  findForecastURL,
+  findWeatherForecast,
 };
 
-export default GeocodingService;
+export default WeatherService;

@@ -1,5 +1,4 @@
 import { useLayoutEffect, useState } from 'react';
-import SearchBar from './SearchBar';
 import {
   TbTemperature,
   TbTemperatureFahrenheit,
@@ -17,8 +16,26 @@ import {
   TiWeatherWindy,
 } from 'react-icons/ti';
 import { BiDownArrow } from 'react-icons/bi';
+import { Period } from '../models/WeatherAPIForecast';
 
-const CurrentForecast = (): JSX.Element => {
+const ICON_MAP = {
+  cloudy: <TiWeatherCloudy />,
+  sunny: <TiWeatherSunny />,
+};
+
+interface Props {
+  loading: boolean;
+  errorMsg: boolean;
+  address: string;
+  currentForecast: Period;
+}
+
+const CurrentForecast = ({
+  loading,
+  errorMsg,
+  address,
+  currentForecast,
+}: Props): JSX.Element => {
   const [bgColor, setBgColor] = useState<string>('');
 
   useLayoutEffect(() => {
@@ -34,35 +51,51 @@ const CurrentForecast = (): JSX.Element => {
 
   return (
     <>
-      <div className="container-fluid shadow-sm bg-white opacity-75">
-        <div className="row align-items-center py-3 px-2">
-          <div className="col-7">
-            <div className="fs-5">Weather App</div>
-          </div>
-          <div className="col-5">
-            <SearchBar />
-          </div>
-        </div>
-      </div>
       <div
         className="border p-4 rounded"
-        style={{ height: 200, width: 400, background: 'rgba(255,255,255,0.8)' }}
+        style={{
+          minHeight: 200,
+          width: 400,
+          background: 'rgba(255,255,255,0.8)',
+        }}
       >
-        <div className="text-center mb-3 fs-4">Medellin, Colombia</div>
-        <div className="d-flex justify-content-evenly">
-          <div className="d-flex flex-column align-items-center">
-            <TbTemperature size="3.5em" />
-            <div className="d-flex align-items-center">
-              56 <TbTemperatureFahrenheit size="1.3em" />{' '}
+        {loading ? (
+          <div className="h-100 d-flex flex-column justify-content-center align-items-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
-          <div className="d-flex flex-column align-items-center">
-            <div>
-              <TiWeatherCloudy size="3.5em" />
-            </div>
-            <div>Cloudy</div>
-          </div>
-        </div>
+        ) : (
+          <>
+            {errorMsg ? (
+              <div className="h-100 d-flex flex-column justify-content-center align-items-center">
+                <div className="text-center text-danger">
+                  No match for this address was found. Make sure that the format
+                  is correct and try again
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="text-center mb-3 fs-4">{address}</div>
+                <div className="d-flex justify-content-evenly">
+                  <div className="d-flex flex-column align-items-center">
+                    <TbTemperature size="3.5em" />
+                    <div className="d-flex align-items-center">
+                      {currentForecast.temperature}
+                      {currentForecast.temperatureUnit}
+                    </div>
+                  </div>
+                  <div className="d-flex flex-column align-items-center">
+                    <div>
+                      <TiWeatherCloudy size="3.5em" />
+                    </div>
+                    <div>{currentForecast.shortForecast}</div>
+                  </div>
+                </div>
+              </>
+            )}
+          </>
+        )}
       </div>
       <BiDownArrow size="2em" color="rgba(255,255,255,0.7)" className="mb-2" />
     </>
