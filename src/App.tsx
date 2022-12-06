@@ -1,31 +1,34 @@
-import React from 'react';
+import { useState } from 'react';
 import AddressForm from './components/AddressForm';
 import Page from './components/Page';
-import AddressFormState from './models/AddressFormState';
-import queryString from 'query-string';
-import axios from 'axios';
+import GeocodingService from './api/services/GeocodingService';
+import CurrentForecast from './components/CurrentForecast';
+import ForecastList from './components/ForecastList';
+import background from './assets/sunny.png';
 
-function App() {
-  const getWeatherForecast = (item: string) => {
-    console.log(item);
-  };
+const App = (): JSX.Element => {
+  const [coordinates, setCoordinates] = useState({});
 
-  const submitAddressParams = (inputs: AddressFormState) => {
-    const url = 'https://geocoding.geo.census.gov/geocoder/locations/address';
-    const qs = queryString.stringifyUrl({
-      url: url,
-      query: inputs,
-    });
+  // const getWeatherForecast = (item: string) => {
+  //   console.log(item);
+  // };
 
-    await axios.get(qs);
+  const submitAddressParams = async (data: string) => {
+    const coords = await GeocodingService.findByAddress('922+W+Ainslie+St');
+    console.log(coords);
+
+    setCoordinates(coords);
   };
   return (
-    <Page>
-      {/* <Header /> */}
-      <AddressForm onGetWeatherForecast={getWeatherForecast} />
-      {/* <WeatherForecast /> */}
-    </Page>
+    <>
+      <Page bgImage={background}>
+        <CurrentForecast />
+      </Page>
+      {/* <AddressForm submitAddressParams={submitAddressParams} /> */}
+
+      <ForecastList />
+    </>
   );
-}
+};
 
 export default App;
