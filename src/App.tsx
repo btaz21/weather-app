@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Page from './components/Page';
 import GeocodingService from './api/services/GeocodingService';
 import WeatherService from './api/services/WeatherService';
-import CurrentForecast from './components/CurrentForecastBox';
+import CurrentForecastBox from './components/CurrentForecastBox';
 import ForecastList from './components/ForecastList';
 import background from './assets/background.png';
 import Header from './components/Header';
@@ -60,7 +60,7 @@ const App = (): JSX.Element => {
           submitForm={getCoordinates}
           setErrorMsg={setErrorMsg}
         />
-        <CurrentForecast
+        <CurrentForecastBox
           loading={loading}
           errorMsg={errorMsg}
           address={address}

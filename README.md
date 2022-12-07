@@ -11,7 +11,7 @@ This project is a weather app which demonstrates the following:
 
 ## Technology Used
 
-React, Typescript, Bootstrap, Axios
+React (Create-React-App), Typescript, Bootstrap, Axios
 
 ## Live Application URL
 
@@ -54,29 +54,31 @@ Application will run on **localhost:3000** by default
 
 #### Main Components
 
-1. **CurrentForecastPage** This component displays the main page of the app with a search bar and a current forecast.
+1. **CurrentForecastBox** This component displays the current weather for the geographic center of the USA (on page load) or the current weather for whatever address is inputted by end user.
 
-2. **ForecastList** Renders the list of daily forecasts from weather.api.gov
+2. **ForecastList** Renders an array of daily forecasts from weather.api.gov based on the address that was added by end user. Since the size of the array is pretty small, no memoization necessary
 
-3. **ForecastListItem**
+3. **ForecastListItem** Daily forecast component that can accept a number of weather related props for a given day.
 
 #### Other Components
 
-1. **Header** Basic Header Component that accepts some props for reusability.
-2. **LoadingSpinner**
-3. **Page**
-4. **SearchBar**
+1. **Header** Basic header component that accepts some props for reusability.
+2. **LoadingSpinner** Spinner component to show .... In a larger app, might customize this more to include props such as color, size, type, etc for reusability.
+3. **Page** Mainly for layout purposes, accepts child component
+4. **SearchBar** Form with two controlled inputs for street address and zip code. In a larger app, would likely use external library to help with react form building (i.e. formik or react-hook-form) as well as a validation library such as yup. I created some basic validation just to show some good practices.
 
 ### Hooks
 
-1. **useInputState** This hook makes it easier to share the logic for controlled inputs across the app.
+1. **useInputState** This hook makes it easier to handle controlled react inputs across the application. Provides a value, a change handler, and an option to reset input.
+2. **useWeatherState** Another custom hook that makes use of the weather forecast to provide some fun, UI based components (weather icons, custom turtledoves, and background images)
 
 ## Resources
 
 ### Improvements
 
-Better Error Messaging
-Automated Testing
+Better error handling / messaging
+Automated testing
+Providing some indication of a required input on the input itself
 
 **create-react-app** : The following link has all the commands that can be used with create-react-app
 https://github.com/facebook/create-react-app
