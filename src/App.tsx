@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Page from './components/Page';
 import GeocodingService from './api/services/GeocodingService';
 
@@ -8,13 +8,25 @@ import ForecastList from './components/ForecastList';
 import background from './assets/sunny.png';
 import Header from './components/Header';
 import { Period } from './models/WeatherAPIForecast';
-
+import { BiDownArrow } from 'react-icons/bi';
+import './App.css';
 const App = (): JSX.Element => {
   const [forecast, setForecast] = useState<Period[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<boolean>(false);
   const [address, setAddress] = useState<string>('');
   const [currentForecast, setCurrentForecast] = useState<Period>(Object);
+
+  useEffect(() => {
+    const setInitialWeather = async () => {
+      const url = await getForecastUrl({ x: -98.35, y: 39.5 });
+      const forecast = await getWeatherForecast(url);
+      setAddress('Geographic Center of the USA');
+      setCurrentForecast(forecast[0]);
+    };
+    setInitialWeather();
+  }, []);
+
   const getWeatherForecast = async (url: string) => {
     return await WeatherService.findWeatherForecast(url);
   };
@@ -28,8 +40,6 @@ const App = (): JSX.Element => {
       setErrorMsg(false);
       setLoading(true);
       const data = await GeocodingService.findByAddress(street, zip);
-      console.log(data);
-
       const url = await getForecastUrl(data.coordinates);
       const forecast = await getWeatherForecast(url);
       setLoading(false);
@@ -42,8 +52,6 @@ const App = (): JSX.Element => {
     }
   };
 
-  console.log(address);
-
   return (
     <>
       <Page bgImage={background}>
@@ -54,6 +62,15 @@ const App = (): JSX.Element => {
           address={address}
           currentForecast={currentForecast}
         />
+        {forecast.length ? (
+          <BiDownArrow
+            size="2em"
+            color="rgba(255,255,255,0.7)"
+            className="mb-2"
+          />
+        ) : (
+          <div></div>
+        )}
       </Page>
       <ForecastList list={forecast} />
     </>
