@@ -32,10 +32,10 @@ const useWeatherState = (forecast: string) => {
             setLogo(turtledoverainy);
             break;
           }
-          case 'cloudy' || 'clouds': {
+          case 'cloudy' || 'clouds' || 'foggy' || 'fog': {
             setIcon(<TiWeatherCloudy size="3.5em" />);
             setBgImg(clouds);
-            setLogo(turtledove);
+            setLogo(turtledovefoggy);
             break;
           }
           case 'sunny' || 'sun': {
