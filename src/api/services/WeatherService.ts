@@ -3,7 +3,7 @@ import { Forecast } from '../../models/WeatherAPIForecast';
 import { Points } from '../../models/WeatherAPIPoints';
 
 const apiClient = axios.create({
-  baseURL: 'https://cors-anywhere.herokuapp.com/api.weather.gov/',
+  baseURL: 'https://api.weather.gov/',
   headers: {
     'Content-Type': 'application/json',
   },

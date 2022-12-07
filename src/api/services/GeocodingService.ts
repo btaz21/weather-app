@@ -2,8 +2,7 @@ import axios from 'axios';
 import { Coordinates } from '../../models/GeocodeResponse';
 
 const apiClient = axios.create({
-  baseURL:
-    'https://cors-anywhere.herokuapp.com/geocoding.geo.census.gov/geocoder/locations',
+  baseURL: 'https://geocoding.geo.census.gov/geocoder/locations',
   headers: {
     'Content-Type': 'application/json',
   },
