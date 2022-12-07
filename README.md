@@ -36,13 +36,13 @@ npm install -g create-react-app
 
 Clone the project into local
 
-Install all the npm packages. Go into the project folder and type the following command to install all npm packages
+Install all npm packages. Go into project folder and type the following command:
 
 ```bash
 npm install
 ```
 
-In order to run the application Type the following command
+To run the application, type the following command
 
 ```bash
 npm start
