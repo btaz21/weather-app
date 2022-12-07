@@ -1,8 +1,3 @@
-.search-box {
-  height: 40px;
-  border-radius: 40px;
-}
-
 .search-box:hover > .search-text {
   width: 240px;
   padding: 0 6px;
@@ -10,13 +5,13 @@
 }
 
 .search-box:hover > .search-btn {
-  background: white;
+  background: transparent;
   color: black;
 }
 
 .search-box:hover {
-  border: solid 1px white;
-  padding: 0 0 0 10px;
+  border-bottom: solid 1px black;
+  padding: 0 10px;
 }
 
 .search-btn {

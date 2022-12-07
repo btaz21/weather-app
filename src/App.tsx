@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import Page from './components/Page';
 import GeocodingService from './api/services/GeocodingService';
-
 import WeatherService from './api/services/WeatherService';
 import CurrentForecast from './components/CurrentForecast';
 import ForecastList from './components/ForecastList';
-import background from './assets/sunny.png';
+import background from './assets/background.png';
 import Header from './components/Header';
 import { Period } from './models/WeatherAPIForecast';
 import { BiDownArrow } from 'react-icons/bi';
 import './App.css';
+
 const App = (): JSX.Element => {
   const [forecast, setForecast] = useState<Period[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,7 +55,11 @@ const App = (): JSX.Element => {
   return (
     <>
       <Page bgImage={background}>
-        <Header title="Weather App" submitForm={getCoordinates} />
+        <Header
+          title="Weather App"
+          submitForm={getCoordinates}
+          setErrorMsg={setErrorMsg}
+        />
         <CurrentForecast
           loading={loading}
           errorMsg={errorMsg}

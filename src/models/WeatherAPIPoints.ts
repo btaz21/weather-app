@@ -3,7 +3,7 @@ export interface Points {
   id: string;
   type: string;
   geometry: Geometry;
-  properties: PokedexProperties;
+  properties: PointProperties;
 }
 
 export interface ContextClass {
@@ -44,7 +44,7 @@ export interface Geometry {
   coordinates: number[];
 }
 
-export interface PokedexProperties {
+export interface PointProperties {
   '@id': string;
   '@type': string;
   cwa: string;

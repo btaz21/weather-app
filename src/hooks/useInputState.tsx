@@ -7,7 +7,11 @@ const useInputState = (initialState: string = '') => {
     setState(e.target.value);
   }
 
-  return [state, handleChange] as const;
+  function resetState() {
+    setState('');
+  }
+
+  return [state, handleChange, resetState] as const;
 };
 
 export default useInputState;

@@ -1,26 +1,31 @@
+import { FormEvent, Dispatch, SetStateAction } from 'react';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
-import '../css/SearchBar.css';
 import useInputState from '../hooks/useInputState';
+import '../css/SearchBar.css';
 
 interface Props {
   submitForm: (street: string, zip: string) => void;
+  setErrorMsg: Dispatch<SetStateAction<boolean>>;
 }
 
-const SearchBar = ({ submitForm }: Props) => {
+const SearchBar = ({ submitForm, setErrorMsg }: Props) => {
   const [address, handleAddressChange] = useInputState('');
   const [zip, handleZipChange] = useInputState('');
 
-  function handleSubmit(e: React.FormEvent) {
+  const isValid = () => {
+    if (!address || !zip) return false;
+    return true;
+  };
+
+  function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    const formatted = address.split(',');
-    const street = formatted[0].split(' ').join('+');
-    const zipCode = formatted[1];
-    console.log(street);
-    console.log(zipCode);
-
-    // console.log(address);
-
-    submitForm(street, zipCode);
+    if (isValid()) {
+      const street = address.split(' ').join('+');
+      const zipCode = zip.trim();
+      submitForm(street, zipCode);
+    } else {
+      setErrorMsg(true);
+    }
   }
 
   return (
@@ -31,8 +36,17 @@ const SearchBar = ({ submitForm }: Props) => {
           type="text"
           value={address}
           onChange={handleAddressChange}
-          placeholder="i.e. 922 Mercedes Blvd, 60660"
+          placeholder="Street Address"
         />
+        <input
+          className="search-text"
+          type="text"
+          value={zip}
+          onChange={handleZipChange}
+          placeholder="Zip Code"
+        />
+        <button type="submit" className="visually-hidden"></button>
+
         <div className="search-btn">
           <HiMagnifyingGlass />
         </div>

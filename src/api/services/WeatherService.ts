@@ -5,7 +5,7 @@ import { Points } from '../../models/WeatherAPIPoints';
 const apiClient = axios.create({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.weather.gov/',
   headers: {
-    'Content-type': 'application/json',
+    'Content-Type': 'application/json',
   },
 });
 
@@ -14,12 +14,8 @@ const findWeatherForecast = async (url: string) => {
   return response.data.properties.periods;
 };
 
-const findForecastURL = async (coords: { x: number; y: number }) => {
-  const response = await apiClient.get<Points>(
-    `/points/${coords.y},${coords.x}`
-  );
-  console.log(response);
-
+const findForecastURL = async ({ x, y }: { x: number; y: number }) => {
+  const response = await apiClient.get<Points>(`/points/${y},${x}`);
   return response.data.properties.forecast;
 };
 

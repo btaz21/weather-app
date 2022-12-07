@@ -5,7 +5,7 @@ const apiClient = axios.create({
   baseURL:
     'https://cors-anywhere.herokuapp.com/geocoding.geo.census.gov/geocoder/locations',
   headers: {
-    'Content-type': 'application/json',
+    'Content-Type': 'application/json',
   },
 });
 
