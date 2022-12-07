@@ -63,7 +63,7 @@ Application will run on **localhost:3000** by default
 #### Other Components
 
 1. **Header** Basic header component that accepts some props for reusability.
-2. **LoadingSpinner** Spinner component to show .... In a larger app, might customize this more to include props such as color, size, type, etc for reusability.
+2. **LoadingSpinner** Spinner component to show end user that data is loading from external API. In a larger app, might customize this more to include props such as color, size, type, etc for reusability.
 3. **Page** Mainly for layout purposes, accepts child component
 4. **SearchBar** Form with two controlled inputs for street address and zip code. In a larger app, would likely use external library to help with react form building (i.e. formik or react-hook-form) as well as a validation library such as yup. I created some basic validation just to show some good practices.
 
