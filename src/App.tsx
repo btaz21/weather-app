@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Page from './components/Page';
 import GeocodingService from './api/services/GeocodingService';
 import WeatherService from './api/services/WeatherService';
-import CurrentForecast from './components/CurrentForecast';
+import CurrentForecast from './components/CurrentForecastPage';
 import ForecastList from './components/ForecastList';
 import background from './assets/background.png';
 import Header from './components/Header';

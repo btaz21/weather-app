@@ -16,28 +16,7 @@ const CurrentForecast = ({
   address,
   currentForecast,
 }: Props): JSX.Element => {
-  const { icon } = useWeatherState(currentForecast.shortForecast);
-
-  // const [icon, setIcon] = useState<JSX.Element | string>('');
-
-  // useEffect(() => {
-  //   if (currentForecast.shortForecast) {
-  //     const arr = currentForecast.shortForecast.split(' ');
-  //     for (let item of arr) {
-  //       switch (item.toLowerCase()) {
-  //         case 'rain': {
-  //           return setIcon(<TiWeatherStormy size="3.5em" />);
-  //         }
-  //         case 'cloudy': {
-  //           return setIcon(<TiWeatherCloudy size="3.5em" />);
-  //         }
-  //         case 'sunny': {
-  //           return setIcon(<TiWeatherSunny size="3.5em" />);
-  //         }
-  //       }
-  //     }
-  //   }
-  // }, [currentForecast]);
+  const { icon, logo } = useWeatherState(currentForecast.shortForecast);
 
   const formatAddress = (words: string): JSX.Element => {
     const arr = words.split(',');
@@ -57,9 +36,9 @@ const CurrentForecast = ({
       <div className="row justify-content-center">
         <div className="col-10 col-md-6 col-lg-5">
           <div
-            className="border p-4 rounded h-100"
+            className="h-100 border p-4 rounded"
             style={{
-              minHeight: 200,
+              minHeight: '250px',
               background: 'rgba(255,255,255,0.8)',
             }}
           >
@@ -78,19 +57,29 @@ const CurrentForecast = ({
                   </div>
                 ) : (
                   <div className="container-fluid">
-                    <div className="text-center mb-3 fs-4">
+                    <div className="text-center mb-4 fs-4">
                       {formatAddress(address)}
                     </div>
 
-                    <div className="row align-items-start">
-                      <div className="col-6 d-flex flex-column align-items-center justify-content-center">
+                    <div className="row align-items-center">
+                      <div className="col-4 d-flex flex-column align-items-center justify-content-center">
                         <div>{address && <TbTemperature size="3.5em" />}</div>
                         <div>
-                          {currentForecast.temperature}°
+                          {currentForecast.temperature}
+                          {currentForecast.temperature && '°'}
                           {currentForecast.temperatureUnit}
                         </div>
                       </div>
-                      <div className="col-6 d-flex flex-column align-items-center justify-content-center">
+                      <div className="col-4">
+                        {logo && (
+                          <img
+                            src={logo}
+                            alt="turtledove-weather-guide"
+                            style={{ width: '100%' }}
+                          />
+                        )}
+                      </div>
+                      <div className="col-4 d-flex flex-column align-items-center justify-content-center">
                         <div>{icon} </div>
                         <div className="text-center">
                           {currentForecast.shortForecast}

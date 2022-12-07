@@ -11,11 +11,15 @@ const apiClient = axios.create({
 
 const findWeatherForecast = async (url: string) => {
   const response = await apiClient.get<Forecast>(url);
+  console.log(response);
+
   return response.data.properties.periods;
 };
 
 const findForecastURL = async ({ x, y }: { x: number; y: number }) => {
   const response = await apiClient.get<Points>(`/points/${y},${x}`);
+  console.log(response);
+
   return response.data.properties.forecast;
 };
 

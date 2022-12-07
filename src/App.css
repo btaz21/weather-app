@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Solway:wght@300&display=swap');
+
 *,
 *::before,
 *::after {
@@ -5,7 +7,6 @@
 }
 
 html {
-  /* this makes sure the padding and the border is included in the box sizing */
   box-sizing: border-box;
   overflow-x: hidden;
 }
@@ -14,4 +15,5 @@ html body {
   padding: 0;
   margin: 0;
   overflow-x: inherit;
+  font-family: 'Solway', serif;
 }
