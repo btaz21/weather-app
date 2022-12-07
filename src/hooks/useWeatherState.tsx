@@ -13,6 +13,7 @@ import clear from '../assets/clear.png';
 import turtledovesunny from '../assets/turtledovesunny.png';
 import turtledovesnowy from '../assets/turtledovesnowy.png';
 import turtledoverainy from '../assets/turtledoverainy.png';
+import turtledovefoggy from '../assets/turtledovefoggy.png';
 import turtledove from '../assets/logo.png';
 
 const useWeatherState = (forecast: string) => {
@@ -55,6 +56,12 @@ const useWeatherState = (forecast: string) => {
             setIcon(<TiWeatherSnow size="3.5em" />);
             setBgImg(snow);
             setLogo(turtledovesnowy);
+            break;
+          }
+          case 'fog' || 'foggy': {
+            setIcon(<TiWeatherCloudy size="3.5em" />);
+            setBgImg(clouds);
+            setLogo(turtledovefoggy);
             break;
           }
           default: {
