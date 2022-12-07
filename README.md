@@ -54,9 +54,9 @@ Application will run on **localhost:3000** by default
 
 #### Main Components
 
-1. **CurrentForecastBox** This component displays the current weather for the geographic center of the USA (on page load) or the current weather for whatever address is inputted by end user.
+1. **CurrentForecastBox** This component displays the current weather for the geographic center of the USA (on page load) or the current weather for whatever address is input by end user.
 
-2. **ForecastList** Renders an array of daily forecasts from weather.api.gov based on the address that was added by end user. Since the size of the array is pretty small, no memoization necessary
+2. **ForecastList** Renders an array of daily forecasts from weather.api.gov based on the address that was added by end user. Since the size of the array is pretty small, memoization was not added
 
 3. **ForecastListItem** Daily forecast component that can accept a number of weather related props for a given day.
 
@@ -76,9 +76,9 @@ Application will run on **localhost:3000** by default
 
 ### Improvements
 
-Better error handling / messaging
-Automated testing
-Providing some indication of a required input on the input itself
+1. Better error handling / messaging
+2. Automated testing
+3. Providing some indication of a required input on the input itself
 
 **create-react-app** : The following link has all the commands that can be used with create-react-app
 https://github.com/facebook/create-react-app
