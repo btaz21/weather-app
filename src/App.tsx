@@ -49,6 +49,7 @@ const App = (): JSX.Element => {
     } catch (error) {
       setLoading(false);
       setErrorMsg(true);
+      setForecast([]);
     }
   };
 

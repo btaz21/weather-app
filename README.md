@@ -79,9 +79,9 @@ Application will run on **localhost:3000** by default
 
 ### Improvements
 
-1. Better error handling / messaging
+1. More complete error handling / messaging
 2. Automated testing
-3. Providing some indication of a required input on the input itself
+3. Providing some indication of required inputs on the input itself
 
 **create-react-app** : The following link has all the commands that can be used with create-react-app
 https://github.com/facebook/create-react-app
