@@ -9,11 +9,6 @@
   color: black;
 }
 
-.search-box:hover {
-  border-bottom: solid 1px black;
-  padding: 0 10px;
-}
-
 .search-btn {
   color: white;
   float: right;
@@ -41,6 +36,4 @@
   transition: 0.4s;
   line-height: 40px;
   width: 0px;
-
-  /*   width: 250px; */
 }

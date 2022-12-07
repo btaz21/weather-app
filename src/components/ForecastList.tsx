@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { Period } from '../models/WeatherAPIForecast';
 import ForecastListItem from './ForecastListItem';
 
@@ -7,10 +6,8 @@ export interface Props {
 }
 
 const ForecastList = ({ list }: Props): JSX.Element => {
-  console.log(list);
-
   return (
-    <div className="row row-cols-1 row-cols-sm-2">
+    <div className="row row-cols-1 row-cols-md-2">
       {list.map((l) => (
         <ForecastListItem
           key={l.number}

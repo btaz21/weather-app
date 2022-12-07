@@ -32,14 +32,14 @@ const SearchBar = ({ submitForm, setErrorMsg }: Props) => {
     <form onSubmit={handleSubmit}>
       <div className="search-box d-flex align-items-center justify-content-end">
         <input
-          className="search-text"
+          className="search-text border-bottom"
           type="text"
           value={address}
           onChange={handleAddressChange}
           placeholder="Street Address"
         />
         <input
-          className="search-text"
+          className="search-text border-bottom"
           type="text"
           value={zip}
           onChange={handleZipChange}

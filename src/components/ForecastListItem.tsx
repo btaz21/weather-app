@@ -35,19 +35,28 @@ const ForecastListItem = ({
       <div className="d-flex justify-content-center align-items-center fw-bold">
         {name} <span className="ms-3">{icon}</span>
       </div>
-      <div className="text-center mt-4">{detail}</div>
       <div className="text-center mt-4">{short}</div>
 
+      <div className="text-center mt-4">{detail}</div>
+
       <div className="mt-4 d-flex justify-content-between">
-        <TbTemperature size="2em" />
-        <div className="shadow-lg rounded border bg-light p-2">
+        <TbTemperature
+          size="2em"
+          className="border border-dark rounded-circle bg-dark"
+          color="white"
+        />
+        <div className="shadow-lg rounded border border-dark bg-light p-2">
           {temp}°{tempUnit}
         </div>
       </div>
 
       <div className="mt-2 d-flex justify-content-between">
-        <TiWeatherWindy size="2em" />
-        <div className="shadow-lg rounded border bg-light p-2">
+        <TiWeatherWindy
+          size="2em"
+          className="border border-dark rounded-circle bg-dark"
+          color="white"
+        />
+        <div className="shadow-lg rounded border border-dark bg-light p-2">
           {windSpeed} winds out of {windDirection}
         </div>
       </div>

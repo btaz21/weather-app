@@ -56,18 +56,27 @@ Application will run on **localhost:3000** by default
 
 1. **CurrentForecastPage** This component displays the main page of the app with a search bar and a current forecast.
 
-2. **ForecastList** Displays the
+2. **ForecastList** Renders the list of daily forecasts from weather.api.gov
 
-3. **ForecastListItem** Shows
+3. **ForecastListItem**
 
 #### Other Components
 
-1. **Header**
+1. **Header** Basic Header Component that accepts some props for reusability.
 2. **LoadingSpinner**
 3. **Page**
 4. **SearchBar**
 
+### Hooks
+
+1. **useInputState** This hook makes it easier to share the logic for controlled inputs across the app.
+
 ## Resources
+
+### Improvements
+
+Better Error Messaging
+Automated Testing
 
 **create-react-app** : The following link has all the commands that can be used with create-react-app
 https://github.com/facebook/create-react-app

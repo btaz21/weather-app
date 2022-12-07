@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Page from './components/Page';
 import GeocodingService from './api/services/GeocodingService';
 import WeatherService from './api/services/WeatherService';
-import CurrentForecast from './components/CurrentForecastPage';
+import CurrentForecast from './components/CurrentForecastBox';
 import ForecastList from './components/ForecastList';
 import background from './assets/background.png';
 import Header from './components/Header';
@@ -67,11 +67,14 @@ const App = (): JSX.Element => {
           currentForecast={currentForecast}
         />
         {forecast.length ? (
-          <BiDownArrow
-            size="2em"
-            color="rgba(255,255,255,0.7)"
-            className="mb-2"
-          />
+          <div className="d-flex flex-column align-items-center">
+            <div className="text-white">Weekly Forecast</div>
+            <BiDownArrow
+              size="2em"
+              color="rgba(255,255,255,0.7)"
+              className="mb-2"
+            />
+          </div>
         ) : (
           <div></div>
         )}

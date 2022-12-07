@@ -36,20 +36,19 @@ const CurrentForecast = ({
       <div className="row justify-content-center">
         <div className="col-10 col-md-6 col-lg-5">
           <div
-            className="h-100 border p-4 rounded"
+            className="border p-4 rounded"
             style={{
-              minHeight: '250px',
               background: 'rgba(255,255,255,0.8)',
             }}
           >
             {loading ? (
-              <div className="h-100 d-flex flex-column justify-content-center align-items-center">
+              <div className="d-flex justify-content-center flex-column align-items-center">
                 <LoadingSpinner />
               </div>
             ) : (
               <>
                 {errorMsg ? (
-                  <div className="h-100 d-flex flex-column justify-content-center align-items-center">
+                  <div className="d-flex flex-column justify-content-center align-items-center">
                     <div className="text-center text-danger">
                       No match for this address was found. Make sure that the
                       format is correct and try again
@@ -63,7 +62,20 @@ const CurrentForecast = ({
 
                     <div className="row align-items-center">
                       <div className="col-4 d-flex flex-column align-items-center justify-content-center">
-                        <div>{address && <TbTemperature size="3.5em" />}</div>
+                        <div>
+                          {address && (
+                            <TbTemperature
+                              size="3.5em"
+                              color={
+                                currentForecast.temperature < 46
+                                  ? '#7CB9E8'
+                                  : currentForecast.temperature > 90
+                                  ? '#B22222'
+                                  : 'black'
+                              }
+                            />
+                          )}
+                        </div>
                         <div>
                           {currentForecast.temperature}
                           {currentForecast.temperature && '°'}
@@ -74,6 +86,7 @@ const CurrentForecast = ({
                         {logo && (
                           <img
                             src={logo}
+                            className="pb-4 turtledove"
                             alt="turtledove-weather-guide"
                             style={{ width: '100%' }}
                           />

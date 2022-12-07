@@ -12,7 +12,12 @@ const Header = ({ title, submitForm, setErrorMsg }: Props): JSX.Element => {
     <div className="container-fluid shadow-sm bg-white opacity-75">
       <div className="row align-items-center py-3 px-2">
         <div className="col-7 d-flex align-items-center">
-          <img src={logo} style={{ height: '70px' }} alt="logo"></img>
+          <img
+            src={logo}
+            style={{ height: '70px', cursor: 'pointer' }}
+            alt="logo"
+            onClick={() => window.location.reload()}
+          ></img>
           <div className="fs-5">{title}</div>
         </div>
         <div className="col-5">
